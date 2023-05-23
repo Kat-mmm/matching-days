@@ -55,8 +55,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let filledTemplate = template(daysData);
     document.querySelector('.days-container').innerHTML = filledTemplate;
 
-    matchDays();
-
     firstDateEl.addEventListener('change', matchDays);
     secondDateEl.addEventListener('change', matchDays);
 })
