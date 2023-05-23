@@ -87,5 +87,23 @@ describe('Matching days Tests', () =>{
             assert.equal('blue', matchingFactory.matchDays()[matchingFactory.getDate1().getDay()].className);
             assert.equal('red', matchingFactory.matchDays()[matchingFactory.getDate2().getDay()].className);
         })
+        it('When the two dates do not match class names should be blue and red', ()=>{
+            let matchingFactory = new MatchingDays();
+
+            matchingFactory.setDate('2010-09-9');
+            matchingFactory.setDate2('2021-01-15');
+
+            assert.equal('blue', matchingFactory.matchDays()[matchingFactory.getDate1().getDay()].className);
+            assert.equal('red', matchingFactory.matchDays()[matchingFactory.getDate2().getDay()].className);
+        })
+        it('When the two dates do not match class names should be blue and red', ()=>{
+            let matchingFactory = new MatchingDays();
+
+            matchingFactory.setDate('2020-12-16');
+            matchingFactory.setDate2('2025-01-18');
+
+            assert.equal('blue', matchingFactory.matchDays()[matchingFactory.getDate1().getDay()].className);
+            assert.equal('red', matchingFactory.matchDays()[matchingFactory.getDate2().getDay()].className);
+        })
     })
 })

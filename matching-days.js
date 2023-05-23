@@ -16,12 +16,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
         ],
     };
 
-    function matchDays(){
-        matchingDaysFactory.setDate(firstDateEl.value);
-        let day1 = matchingDaysFactory.getDate1().getDay();
 
-        matchingDaysFactory.setDate2(secondDateEl.value)
-        let day2 = matchingDaysFactory.getDate2().getDay();
+    function matchDays(){
+        matchingDaysFactory.setDate2(secondDateEl.value);
+        matchingDaysFactory.setDate(firstDateEl.value);
+
+        localStorage.setItem('date1', matchingDaysFactory.getDate1().toISOString());
+        localStorage.setItem('date2', matchingDaysFactory.getDate2().toISOString());
+
+        let savedDate = localStorage.getItem('date1');
+        let date = new Date(savedDate);
+        let day1 = date.getDay();
+
+
+        let savedDate2 = localStorage.getItem('date2');
+        let date2 = new Date(savedDate2);
+        let day2 = date2.getDay();
 
         daysData.dayss.forEach(day => {
             day.className = 'day';
@@ -44,6 +54,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let template = Handlebars.compile(templateSource);
     let filledTemplate = template(daysData);
     document.querySelector('.days-container').innerHTML = filledTemplate;
+
+    matchDays();
 
     firstDateEl.addEventListener('change', matchDays);
     secondDateEl.addEventListener('change', matchDays);
