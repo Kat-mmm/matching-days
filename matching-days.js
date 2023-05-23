@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const firstDateEl = document.getElementById('date-1');
     const secondDateEl = document.getElementById('date-2');
 
+    let matchingDaysFactory = new MatchingDays();
+
     let daysData = {
         dayss : [
             {day: 'Sunday', className: 'day'},
@@ -15,11 +17,11 @@ document.addEventListener('DOMContentLoaded', ()=>{
     };
 
     function matchDays(){
-        let firstDate = new Date(firstDateEl.value);
-        let day1 = firstDate.getDay();
+        matchingDaysFactory.setDate(firstDateEl.value);
+        let day1 = matchingDaysFactory.getDate1().getDay();
 
-        let secondDate = new Date(secondDateEl.value);
-        let day2 = secondDate.getDay();
+        matchingDaysFactory.setDate2(secondDateEl.value)
+        let day2 = matchingDaysFactory.getDate2().getDay();
 
         daysData.dayss.forEach(day => {
             day.className = 'day';
